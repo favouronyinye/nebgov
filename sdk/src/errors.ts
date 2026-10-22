@@ -335,7 +335,7 @@ export enum VoteEscrowErrorCode {
   InvalidEndLedger = 7,
   ArithmeticOverflow = 8,
   Unauthorized = 9,
-  AlreadyInitialized = 10,
+  LockAlreadyExists = 10,
 
   // SDK-level codes
   SimulationFailed = 100,
@@ -353,7 +353,7 @@ const VOTE_ESCROW_MESSAGES: Record<VoteEscrowErrorCode, string> = {
   [VoteEscrowErrorCode.InvalidEndLedger]: "New end ledger must be after the current end ledger",
   [VoteEscrowErrorCode.Unauthorized]: "Caller is not authorized to perform this action",
   [VoteEscrowErrorCode.ArithmeticOverflow]: "Arithmetic overflow in voting power calculation",
-  [VoteEscrowErrorCode.AlreadyInitialized]: "Vote escrow contract is already initialized",
+  [VoteEscrowErrorCode.LockAlreadyExists]: "An active lock already exists for this account",
 
   [VoteEscrowErrorCode.SimulationFailed]: "Simulation failed",
   [VoteEscrowErrorCode.TransactionFailed]: "Transaction failed",

@@ -136,6 +136,20 @@ fn test_create_lock_basic() {
 }
 
 #[test]
+fn test_create_lock_already_exists_fails() {
+    let f = setup();
+    let client = VoteEscrowContractClient::new(&f.env, &f.contract_id);
+
+    client.create_lock(&f.user, &1_000, &1_000);
+
+    let err = client
+        .try_create_lock(&f.user, &1_000, &1_000)
+        .unwrap_err()
+        .unwrap();
+    assert_eq!(err, VoteEscrowError::LockAlreadyExists.into());
+}
+
+#[test]
 fn test_create_lock_updates_total() {
     let f = setup();
     let amount = 1_000;
